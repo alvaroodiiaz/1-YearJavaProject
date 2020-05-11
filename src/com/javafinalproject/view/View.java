@@ -2,9 +2,11 @@ package com.javafinalproject.view;
 
 import java.util.Scanner;
 
+import com.javafinalproject.data.DataConnection;
+
 public class View {
 
-	public static void main(String[] args) throws Exception{
+	public static void main(String[] args) throws Exception {
 		Scanner numero = new Scanner(System.in);
 		menu();
 		int op = numero.nextInt();
@@ -22,10 +24,10 @@ public class View {
 
 		switch (op2) {
 		case 1:
-			
+			DataConnection.traduccion();
 			break;
 		case 2:
-			
+			DataConnection.escribir();
 			break;
 		case -1:
 			System.exit(0);
@@ -33,6 +35,5 @@ public class View {
 		default:
 			break;
 		}
-
 	}
 }
