@@ -5,12 +5,12 @@ import java.util.Scanner;
 import com.javafinalproject.data.DataConnection;
 
 public class View {
+	static Scanner numero = new Scanner(System.in);
 
 	public static void main(String[] args) throws Exception {
-		Scanner numero = new Scanner(System.in);
 		menu();
-		int op = numero.nextInt();
-		exmenu(op);
+		int choise = numero.nextInt();
+		exmenu(choise);
 	}
 
 	public static void menu() {
@@ -19,21 +19,27 @@ public class View {
 		System.out.println("-1. Salir");
 	}
 
-	private static void exmenu(int op2) throws Exception {
+	public static void exmenu(int choise) throws Exception {
 		boolean ok = false;
 
-		switch (op2) {
+		switch (choise) {
 		case 1:
-			DataConnection.traduccion();
+			DataConnection.translator();
 			break;
 		case 2:
-			DataConnection.escribir();
+			DataConnection.writer();
 			break;
 		case -1:
 			System.exit(0);
 			break;
 		default:
-			break;
+			throw new Exception("El numero debe ser 1, 2 o -1");
+		}
+		if (choise != -1) {
+			System.out.println("Presiona intro para continuar");
+			menu();
+			choise = numero.nextInt();
+			exmenu(choise);
 		}
 	}
 }
