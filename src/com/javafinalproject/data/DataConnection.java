@@ -23,13 +23,16 @@ import java.io.FileNotFoundException;
 public class DataConnection {
 	static Scanner scanner = new Scanner(System.in);
 
-	public static void muestraContenido() throws FileNotFoundException, IOException {
+	public static void showTxt() throws Exception {
 		String line;
 		FileReader f = new FileReader("C:\\javaDAM\\vocablos.txt");
 		BufferedReader br = new BufferedReader(f);
 		while ((line = br.readLine()) != null) {
 			System.out.println(line);
 		}
+		View.menu();
+		int choise = scanner.nextInt();
+		View.exmenu(choise);
 		br.close();
 	}
 
@@ -59,7 +62,7 @@ public class DataConnection {
 
 	public static final String SPLIT = ";";
 
-	public static void translator() throws Exception {
+	public static void translatorSpaCan() throws Exception {
 		HashMap<String, String> translator = new HashMap<>();
 		BufferedReader br = new BufferedReader(new FileReader("C:\\javaDam\\vocablos.txt"));
 		String line, key, value;
@@ -68,6 +71,34 @@ public class DataConnection {
 			key = st.nextToken();
 			value = st.nextToken();
 			translator.put(key, value);
+		}
+		br = new BufferedReader(new InputStreamReader(System.in));
+		int choise=1;
+		while (choise == 1) {
+		System.out.println("Introduzca la palabra a traduccion");
+		String word = br.readLine();
+		System.out.println(translator.get(word));
+		System.out.println("¿Quiere seguir traducciendo?");
+		System.out.println("1. Si\n-1. No");
+		choise = scanner.nextInt();
+		}
+		if (choise != -1) {
+			throw new Exception("El numero debe ser 1 o -1");
+		} else {
+			View.menu();
+			int op = scanner.nextInt();
+			View.exmenu(op);
+		}
+	}
+	public static void translatorCanSpa() throws Exception {
+		HashMap<String, String> translator = new HashMap<>();
+		BufferedReader br = new BufferedReader(new FileReader("C:\\javaDam\\vocablos.txt"));
+		String line, key, value;
+		while ((line = br.readLine()) != null) {
+			StringTokenizer st = new StringTokenizer(line, SPLIT);
+			key = st.nextToken();
+			value = st.nextToken();
+			translator.put(value, key);
 		}
 		br = new BufferedReader(new InputStreamReader(System.in));
 		int choise=1;

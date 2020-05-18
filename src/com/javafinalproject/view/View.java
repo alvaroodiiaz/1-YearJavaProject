@@ -15,7 +15,9 @@ public class View {
 
 	public static void menu() {
 		System.out.println("1. Traductor Español/Choni");
-		System.out.println("2. Insertar vocablos al traductor");
+		System.out.println("2. Traductor Choni/Español");
+		System.out.println("3. Insertar vocablos al traductor");
+		System.out.println("BONUS!!! 4. Visualizar .txt");
 		System.out.println("-1. Salir");
 	}
 
@@ -24,22 +26,22 @@ public class View {
 
 		switch (choise) {
 		case 1:
-			DataConnection.translator();
+			DataConnection.translatorSpaCan();
 			break;
 		case 2:
+			DataConnection.translatorCanSpa();
+			break;
+		case 3:
 			DataConnection.writer();
+			break;
+		case 4:
+			DataConnection.showTxt();
 			break;
 		case -1:
 			System.exit(0);
 			break;
 		default:
-			throw new Exception("El numero debe ser 1, 2 o -1");
-		}
-		if (choise != -1) {
-			System.out.println("Presiona intro para continuar");
-			menu();
-			choise = numero.nextInt();
-			exmenu(choise);
+			throw new Exception("El numero debe ser 1, 2, 3, 4 o -1");
 		}
 	}
 }
